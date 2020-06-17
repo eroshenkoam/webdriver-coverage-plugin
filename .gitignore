@@ -1,0 +1,10 @@
+# Idea
+.idea
+*.iml
+
+# Node
+node_modules
+build
+
+# App
+secrets.*.js

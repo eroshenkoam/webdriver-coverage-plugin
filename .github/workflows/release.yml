@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - name: Install
+        run: yarn
+      - name: Build
+        run: npm run build
+      - name: Archive
+        uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -qq -r ./plugin.zip ./build
+      - name: Publish
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: plugin.zip
+          asset_name: plugin.zip
+          asset_content_type: application/zip
