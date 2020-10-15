@@ -29,9 +29,9 @@ function getTestItems(locator) {
     return items;
 }
 
-function getTestsFromLocators(locators) {
+function getTestsFromLocators(source) {
     let tests = "<ul class='test-list'>";
-    locators.forEach(locator => {
+    source.data.forEach(locator => {
         if (locator.fullPath !== null) {
             tests += getTestItems(locator)
         }

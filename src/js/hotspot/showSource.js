@@ -59,18 +59,23 @@ function findElement(node) {
     return elem;
 }
 
-export function showElements(subArr) {
-    for (let i in subArr) {
-        let current = subArr[i];
-
-        try {
-            let elem = findElement(current);
-            if (elem == null) {
-                continue;
+export function showElements(source) {
+    if (source && source.data) {
+        for (let i in source.data) {
+            let current = source.data[i];
+            let path = window.location.pathname;
+            path = path.endsWith("/") ? path.substring(0, path.length -1) : path;
+            if (!(source.onpage && !current.urls.find(u => u.includes(path)))) {
+                try {
+                    let elem = findElement(current);
+                    if (elem == null) {
+                        continue;
+                    }
+                    addPin(elem, current);
+                } catch (e) {
+                    console.log(e)
+                }
             }
-            addPin(elem, current);
-        } catch (e) {
-            console.log(e)
         }
     }
 }
