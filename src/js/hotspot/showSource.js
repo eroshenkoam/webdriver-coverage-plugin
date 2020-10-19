@@ -60,6 +60,7 @@ function findElement(node) {
 }
 
 export function showElements(source) {
+    document.getElementById("pageContainer").classList.add("open")
     if (source && source.data) {
         for (let i in source.data) {
             let current = source.data[i];
@@ -81,6 +82,7 @@ export function showElements(source) {
 }
 
 export function removePrevElements() {
+    document.getElementById("pageContainer").classList.remove("open")
     var oldElements = document.getElementsByClassName("test-coverage");
     for (var i = 0; i < oldElements.length; i++) {
         oldElements[i].remove();

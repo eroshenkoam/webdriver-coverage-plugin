@@ -74,7 +74,7 @@ export function splitAndShowInfo(source) {
     bar.appendChild(barTabs());
 
     var row = document.createElement("div");
-    row.classList.add("pageContainer");
+    row.id = "pageContainer";
 
     row.appendChild(bodyWrapper);
     row.appendChild(bar);
