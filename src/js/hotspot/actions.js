@@ -1,15 +1,19 @@
 import {HIDE_SOURCE, SHOW_SOURCE} from "../common/events";
+import {getState} from "../common/commons";
 
 let locators;
 
 export function showPinsAction() {
+    console.log("Show Pins Action")
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-        chrome.storage.local.get('enabled', function (result) {
-            if (result && result.enabled) {
+        chrome.storage.local.get('state', function (result) {
+            let state = getState(result)
+            if (state && state.enabled) {
                 console.log("Show source");
                 chrome.tabs.sendMessage(tabs[0].id, {
                     text: "showSource",
                     action: SHOW_SOURCE,
+                    onpage: state.onpage,
                     data: locators
                 }, function (response) {
                     console.log("show sent " + response.text);

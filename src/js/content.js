@@ -10,10 +10,10 @@ chrome.runtime.onMessage.addListener(
             try {
                 var splattedBody = document.getElementById('bodyWrapper');
                 if (typeof (splattedBody) === 'undefined' || splattedBody === null) {
-                    splitAndShowInfo(request.data);
+                    splitAndShowInfo(request);
                 }
                 removePrevElements();
-                showElements(request.data);
+                showElements(request);
                 sendResponse({text: "ok"});
             } catch (e) {
                 sendResponse({text: "error"})

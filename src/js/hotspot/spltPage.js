@@ -29,9 +29,9 @@ function getTestItems(locator) {
     return items;
 }
 
-function getTestsFromLocators(locators) {
+function getTestsFromLocators(source) {
     let tests = "<ul class='test-list'>";
-    locators.forEach(locator => {
+    source.data.forEach(locator => {
         if (locator.fullPath !== null) {
             tests += getTestItems(locator)
         }
@@ -74,7 +74,7 @@ export function splitAndShowInfo(source) {
     bar.appendChild(barTabs());
 
     var row = document.createElement("div");
-    row.classList.add("pageContainer");
+    row.id = "pageContainer";
 
     row.appendChild(bodyWrapper);
     row.appendChild(bar);
