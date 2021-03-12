@@ -43,6 +43,10 @@ function findElement(node) {
         .evaluate(node.fullPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
         .singleNodeValue;
 
+    if (!elem1) {
+        elem1 = document.querySelectorAll(node.fullPath)[0];
+    }
+
     if (elem1 == null) {
         return null;
     }
